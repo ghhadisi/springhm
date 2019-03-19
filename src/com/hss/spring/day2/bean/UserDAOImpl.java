@@ -1,8 +1,11 @@
 package com.hss.spring.day2.bean;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 
 /**
  * 用户管理DAO层实现类
@@ -12,6 +15,10 @@ import org.springframework.stereotype.Service;
 	 * * @Service :业务层
 	 * * @Repository :持久层
  * 这三个注解是为了让标注类本身的用途清晰,Spring 在后续版本会对其增强
+ *
+ * Scope
+ * singleton:单例
+ * * prototype:多例
  *
  * @Value :用于注入普通类型.
  * @Autowired :自动装配:
@@ -24,8 +31,10 @@ import org.springframework.stereotype.Service;
  */
 //@Component(value = "userDao")
 @Service(value = "userDao")
+@Scope(value = "prototype")
 public class UserDAOImpl implements UserDAO {
 	@Value("lisi")
+//	@Resource(name = "lisi")
 	private String name;
 
 	public void setName(String name) {
