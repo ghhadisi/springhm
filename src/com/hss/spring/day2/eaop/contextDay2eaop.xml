@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd ">
+    <!--  http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+       http://www.springframework.org/schema/aop -->
+<!--    xmlns:aop="http://www.springframework.org/schema/aop"-->
+    <!---->
+
+    <!--spring 注解开发:组件扫描(类上注解:可以直接使用属性注入的注解)-->
+
+    <context:component-scan base-package="com.hss.spring.day2" />
+
+    <!-- 没有在类上注解的时候开起下面这个可以得到元素上注解的-->
+
+<!--
+    <context:annotation-config />
+-->
+
+    <!-- 准备工作: 导入aop(约束)命名空间 -->
+    <!-- 1.配置目标对象 -->
+<!--
+    <bean name="userDao" class="com.hss.spring.day2.bean.UserDAOImpl" />
+-->
+
+    <!-- 2.配置通知对象 -->
+    <bean name="advice" class="com.hss.spring.day2.eaop.MyAdvice" />
+   <!-- &lt;!&ndash; 3.配置将通知织入目标对象 &ndash;&gt;
+    <aop:config>
+        &lt;!&ndash; 配置切入点
+			public void cn.itcast.service.UserServiceImpl.save()
+			void cn.itcast.service.UserServiceImpl.save()
+			* cn.itcast.service.UserServiceImpl.save()
+			* cn.itcast.service.UserServiceImpl.*()
+
+			* cn.itcast.service.*ServiceImpl.*(..)
+			* cn.itcast.service..*ServiceImpl.*(..)
+		&ndash;&gt;
+        <aop:pointcut expression="execution(* com.hss.spring.day2.bean.UserDAOImpl.*(..))"  id="pc1"/>
+
+        <aop:aspect ref="advice">
+            &lt;!&ndash; 指定名为before方法作为前置通知 &ndash;&gt;
+&lt;!&ndash;
+            <aop:before method="advice" pointcut-ref="pc1" />
+&ndash;&gt;
+            &lt;!&ndash; 后置 &ndash;&gt;
+            &lt;!&ndash;<aop:after-returning method="afterReturning" pointcut-ref="pc1" />&ndash;&gt;
+            &lt;!&ndash; 环绕通知 &ndash;&gt;
+            <aop:around method="around" pointcut-ref="pc1" />
+
+            &lt;!&ndash; 异常拦截通知 &ndash;&gt;
+
+            <aop:after-throwing method="afterException"  throwing="e" pointcut-ref="pc1"/>
+
+            &lt;!&ndash; 后置 &ndash;&gt;
+            <aop:after method="finalMethod" pointcut-ref="pc1"/>
+        </aop:aspect>
+    </aop:config>-->
+
+    <!-- 3.开启使用注解完成织入 -->
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+</beans>

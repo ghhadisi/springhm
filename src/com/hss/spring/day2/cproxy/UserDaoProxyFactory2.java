@@ -28,13 +28,21 @@ public class UserDaoProxyFactory2 implements MethodInterceptor {
 
     @Override
     public Object intercept(Object prxoyobj, Method method, Object[] arg, MethodProxy methodProxy) throws Throwable {
-        //打开事务
-        System.out.println("打开事务!");
-        //调用原有方法
-        Object returnValue = methodProxy.invokeSuper(prxoyobj, arg);
-        //提交事务
-        System.out.println("提交事务!");
+//        //打开事务
+//        System.out.println("打开事务!");
+//        //调用原有方法
+//        Object returnValue = methodProxy.invokeSuper(prxoyobj, arg);
+//        //提交事务
+//        System.out.println("提交事务!");
+//
+//        return returnValue;
 
-        return returnValue;
+
+        if("delete".equals(method.getName())){
+            Object obj = methodProxy.invokeSuper(prxoyobj, arg);
+            System.out.println("日志记录================");
+            return obj;
+        }
+        return methodProxy.invokeSuper(prxoyobj, arg);
     }
 }

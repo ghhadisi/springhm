@@ -6,4 +6,8 @@ package com.hss.spring.day2.bean;
  */
 public interface UserDAO {
 	public void save();
+
+    public void update();
+    public void delete();
+    public void find();
 }

@@ -29,9 +29,9 @@ import javax.annotation.Resource;
  * * @Autowired 和@Qualifier 一起使用.
  *
  */
-//@Component(value = "userDao")
-@Service(value = "userDao")
-@Scope(value = "prototype")
+@Component(value = "userDao2")
+//@Service(value = "userDao2")
+//@Scope(value = "prototype")
 public class UserDAOImpl implements UserDAO {
 	@Value("lisi")
 //	@Resource(name = "lisi")
@@ -43,6 +43,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public void save() {
+//		int i = 1/0;
 		System.out.println("UserDAOImpl执行了..."+name);
 	}
 
@@ -53,5 +54,28 @@ public class UserDAOImpl implements UserDAO {
 
 	public void destroy(){
 		System.out.println("CustomerDAOImpl被销毁了...");
+	}
+
+
+
+	@Override
+	public void update() {
+		System.out.println("UserDAOImpl执行了update..."+name);
+	}
+
+	@Override
+	public void delete() {
+		System.out.println("UserDAOImpl执行了delete..."+name);
+
+	}
+
+	@Override
+	public void find() {
+		System.out.println("UserDAOImpl执行了find..."+name);
+
+	}
+
+	public String getName() {
+		return name;
 	}
 }
