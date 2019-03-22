@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!-- 第二种方式通过context标签引入的 -->
+ <!--   <context:property-placeholder location="classpath:jdbc.properties"/>
+    &lt;!&ndash; 配置C3P0连接池=============================== &ndash;&gt;
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="${jdbc.driverClass}" />
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+    </bean>
+
+
+    <bean id="jdbctemplete" class="org.springframework.jdbc.core.JdbcTemplate" >
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <bean id="accountDao" class="com.hss.spring.day3.transaction.demo1.AccountDaoImpl">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    &lt;!&ndash; 配置平台事务管理器============================= &ndash;&gt;
+
+    <bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+
+    <bean id="transactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+        <property name="transactionManager" ref="transactionManager" />
+    </bean>
+    <bean id="accountService" class="com.hss.spring.day3.transaction.demo1.AccountServiceImpl">
+        <property name="accountDao" ref="accountDao" />
+        <property name="transactionTemplate" ref="transactionTemplate" />
+    </bean>-->
+
+    <!-- 开启注解事务================================ -->
+<!--
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+-->
+
+    <!--spring 注解开发:组件扫描(类上注解:可以直接使用属性注入的注解)-->
+
+    <context:component-scan base-package="com.hss.spring.day3.aop" />
+    <!-- 没有在类上注解的时候开起下面这个可以得到元素上注解的-->
+
+<!--
+        <context:annotation-config />
+-->
+
+    <!-- 3.开启使用注解完成织入 -->
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+    <bean id="myAspect" class="com.hss.spring.day3.aop.MyAspect"></bean>
+</beans>
