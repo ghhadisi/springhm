@@ -6,10 +6,10 @@
         xsi:schemaLocation="
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-        <property name="driverClassName" value="com.mchange.v2.c3p0.ComboPooledDataSource" />
-        <property name="url" value="jdbc:mysql://localhost/db2?useUnicode=true&amp;characterEncoding=UTF8"/>
-        <property name="username" value="root" />
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver" />
+        <property name="jdbcUrl" value="jdbc:mysql://localhost/db2?useUnicode=true&amp;characterEncoding=UTF8"/>
+        <property name="user" value="root" />
         <property name="password" value="123456" />
     </bean>
 
